@@ -74,7 +74,7 @@ const StepTwo = () => {
             <FormItem className="col-span-1 md:col-span-2">
               <FormLabel>Email</FormLabel>
               <FormControl>
-                <Input placeholder="Masukan alamat email" {...field} />
+                <Input type="email" placeholder="Masukan alamat email" {...field} />
               </FormControl>
               <FormMessage className="text-red-500" />
             </FormItem>

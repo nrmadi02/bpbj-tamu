@@ -4,7 +4,7 @@ export const stepFormOneSchema = z.object({
   nama: z.string().min(1, { message: "Nama harus diisi" }),
   alamat: z.string().min(1, { message: "Alamat harus diisi" }),
   nik: z.string().min(1, { message: "NIK harus diisi" }),
-  suhu: z.string().min(1, { message: "Suhu harus diisi" }),
+  // suhu: z.string().min(1, { message: "Suhu harus diisi" }),
 });
 
 export const stepFormTwoSchema = z.object({

@@ -19,7 +19,6 @@ const StepOne = () => {
       alamat: '',
       nama: '',
       nik: '',
-      suhu: ''
     }
   });
 
@@ -55,7 +54,7 @@ const StepOne = () => {
             <FormItem>
               <FormLabel>Nomor Identitas (NIK/SIM/Paspor)</FormLabel>
               <FormControl>
-                <Input placeholder="Masukan nomor identitas anda" {...field} />
+                <Input type="number" placeholder="Masukan nomor identitas anda" {...field} />
               </FormControl>
               <FormMessage className="text-red-500" />
             </FormItem>
@@ -69,23 +68,6 @@ const StepOne = () => {
               <FormLabel>Alamat</FormLabel>
               <FormControl>
                 <Textarea placeholder="Masukan alamat" {...field} />
-              </FormControl>
-              <FormMessage className="text-red-500" />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="suhu"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Suhu Badan</FormLabel>
-              <FormControl>
-                <Input
-                  type="number"
-                  placeholder="Masukan suhu badan"
-                  {...field}
-                />
               </FormControl>
               <FormMessage className="text-red-500" />
             </FormItem>

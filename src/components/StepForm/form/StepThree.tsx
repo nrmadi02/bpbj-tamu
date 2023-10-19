@@ -28,7 +28,7 @@ const StepThree = () => {
   const webcamRef = useRef<Webcam>(null);
   const capture = useCallback(async () => {
     const imageSrc = webcamRef?.current?.getScreenshot();
-    const fileImage = await dataUrlToFile(imageSrc || "", "selfie.jpeg");
+    const fileImage = await dataUrlToFile(imageSrc || "", "selfie.png");
 
     setFile(fileImage);
     form.setValue("gambar", fileImage);
@@ -42,7 +42,7 @@ const StepThree = () => {
   ): Promise<File> {
     const res: Response = await fetch(dataUrl);
     const blob: Blob = await res.blob();
-    return new File([blob], fileName, { type: "image/jpeg" });
+    return new File([blob], fileName, { type: "image/png" });
   }
 
   return (
