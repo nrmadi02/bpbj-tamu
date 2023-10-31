@@ -35,4 +35,8 @@ jobs:
             cd bpbj-tamu
             git pull origin master
             echo "Success pull from github..."
-            node -v
+            npm install
+            echo "Success install npm..."
+            npm run build
+            echo "Success build..."
+            pm2 restart etamu-fe
