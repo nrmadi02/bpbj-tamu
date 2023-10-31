@@ -16,9 +16,23 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { MoreHorizontal } from "lucide-react";
 import { useMemo, useState } from "react";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogTitle,
+  DialogTrigger,
+} from "@radix-ui/react-dialog";
+import { Button } from "@/components/ui/button";
+import { DialogFooter, DialogHeader } from "@/components/ui/dialog";
+import { Label } from "@/components/ui/label";
+import { Form } from "@/components/ui/form";
+import { useForm } from "react-hook-form";
+import EditFormBagian from "./form/EditFormBagian";
+import AddFormBagian from "./form/AddFormBagian";
 
 const MasterBagianContainer = () => {
-    const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1);
 
   const data: IBagian[] = [
     {
@@ -51,6 +65,16 @@ const MasterBagianContainer = () => {
     },
   ];
 
+  const [typeModdal, setTypeModdal] = useState<"add" | "edit" | "delete">("add");
+  const [selectedRow, setSelectedRow] = useState<IBagian | null>(null);
+  const onOpenModal = () => {
+    (document.getElementById("my_modal_1") as HTMLFormElement).showModal();
+  };
+
+  const onCloseModal = () => {
+    (document.getElementById("my_modal_1") as HTMLFormElement).close();
+  };
+
   const columns: ColumnDef<IBagian>[] = useMemo(() => {
     return [
       {
@@ -76,7 +100,7 @@ const MasterBagianContainer = () => {
               Link Whatsapp
             </a>
           );
-        }
+        },
       },
       {
         accessorKey: "username",
@@ -85,7 +109,7 @@ const MasterBagianContainer = () => {
       {
         id: "actions",
         cell: ({ row }) => {
-          // const bagian = row.original;
+          const bagian = row.original;
 
           return (
             <DropdownMenu>
@@ -96,10 +120,24 @@ const MasterBagianContainer = () => {
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
                 <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                <DropdownMenuItem className="hover:!bg-primary hover:text-white">
+                <DropdownMenuItem
+                  onClick={() => {
+                    setSelectedRow(bagian);
+                    setTypeModdal("edit");
+                    onOpenModal();
+                  }}
+                  className="hover:!bg-primary hover:text-white"
+                >
                   Edit
                 </DropdownMenuItem>
-                <DropdownMenuItem className="hover:!bg-primary hover:text-white">
+                <DropdownMenuItem
+                  onClick={() => {
+                    setSelectedRow(bagian);
+                    setTypeModdal("delete");
+                    onOpenModal();
+                  }}
+                  className="hover:!bg-primary hover:text-white"
+                >
                   Hapus
                 </DropdownMenuItem>
               </DropdownMenuContent>
@@ -119,7 +157,13 @@ const MasterBagianContainer = () => {
       <div>
         <div className="w-full flex justify-between items-center">
           <h2 className="font-bold text-xl">Data Bagian</h2>
-          <button className="ds-btn ds-btn-sm ds-btn-primary text-white">
+          <button
+            onClick={() => {
+              setTypeModdal("add");
+              onOpenModal();
+            }}
+            className="ds-btn ds-btn-sm ds-btn-primary text-white"
+          >
             <PlusIcon size={18} />
             Tambah Data
           </button>
@@ -143,6 +187,28 @@ const MasterBagianContainer = () => {
           </div>
         </div>
       </div>
+      <dialog id="my_modal_1" className="ds-modal">
+        {typeModdal === "edit" && (
+          <EditFormBagian onCloseModal={onCloseModal} />
+        )}
+        {typeModdal === "add" && <AddFormBagian onCloseModal={onCloseModal} />}
+        {typeModdal === "delete" && (
+          <div className="ds-modal-box">
+            <h3 className="font-bold text-lg">Hapus Data Bagian</h3>
+            <p className="py-4">Apakah yakin menghapus data bagian ?</p>
+            <div className="ds-modal-action">
+              <div className="ds-modal-action flex items-center gap-1">
+                <form method="dialog">
+                  <button className="ds-btn">Close</button>
+                </form>
+                <button className="ds-btn text-white ds-btn-error">
+                  Hapus
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+      </dialog>
     </div>
   );
 };
