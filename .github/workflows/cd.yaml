@@ -33,5 +33,5 @@ jobs:
             whoami
             ls -al
             cd Front-end/bpbj-tamu
-            git pull origin git@github.com:nrmadi02/bpbj-tamu.git
+            git pull origin master
             echo "Success pull from github..."
