@@ -32,6 +32,6 @@ jobs:
           script: |
             whoami
             ls -al
-            cd /Front-end/bpbj-tamu
+            cd Front-end/bpbj-tamu
             git pull origin git@github.com:nrmadi02/bpbj-tamu.git
             echo "Success pull from github..."
