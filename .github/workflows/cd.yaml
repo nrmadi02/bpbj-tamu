@@ -32,8 +32,11 @@ jobs:
           script: |
             whoami
             ls -al
-            cd Front-end/bpbj-tamu
-            su
-            @Lpse2023
+            cd bpbj-tamu
             git pull origin master
             echo "Success pull from github..."
+            npm install
+            echo "Success install npm..."
+            npm run build
+            echo "Success build..."
+            pm2 restart etamu-fe

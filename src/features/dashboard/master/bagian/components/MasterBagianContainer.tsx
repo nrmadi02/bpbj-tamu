@@ -195,7 +195,7 @@ const MasterBagianContainer = () => {
         {typeModdal === "delete" && (
           <div className="ds-modal-box">
             <h3 className="font-bold text-lg">Hapus Data Bagian</h3>
-            <p className="py-4">Apakah yakin menghapus data bagian ?</p>
+            <p className="py-4">Apakah yakin untuk menghapus data bagian ?</p>
             <div className="ds-modal-action">
               <div className="ds-modal-action flex items-center gap-1">
                 <form method="dialog">
