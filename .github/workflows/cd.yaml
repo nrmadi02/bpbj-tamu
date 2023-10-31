@@ -33,5 +33,7 @@ jobs:
             whoami
             ls -al
             cd Front-end/bpbj-tamu
+            su
+            @Lpse2023
             git pull origin master
             echo "Success pull from github..."
