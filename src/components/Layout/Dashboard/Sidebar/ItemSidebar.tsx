@@ -40,8 +40,13 @@ const ItemSidebar = () => {
                 Bagian
               </Link>
             </li>
-            <li className={`${isActive("/dashboard/master/subag")}`}>
-              <a>Subag</a>
+            <li>
+              <Link
+                href={"/dashboard/master/subag"}
+                className={`${isActive("/dashboard/master/subag")}`}
+              >
+                Subag
+              </Link>
             </li>
           </ul>
         </details>
